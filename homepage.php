@@ -9,14 +9,8 @@ if(isset($_SESSION['id'])&& isset($_SESSION['username'])){
 	<title> Welcome to PushingFilm.</title>
 </head>
 <body> 
-	<h2> Welcome back, <?php echo $_SESSION['username'];?></h2>
+	<h1> Welcome back to PushingFilm,  <?php echo $_SESSION['username'];?></h1>
 </body>
 </html>
-<?php 
-}
-else{
-    header("Location: 1.1.php");
-    exit();
-}
-?>
+<?php }?>
 

@@ -10,7 +10,8 @@ if(isset($_POST['username'])&& isset($_POST['password'])){
         return $data; 
     }
 }
-$username = überprüfung($_POST['username']);
+/* es scheint, als wäre dies nur Code für die URL bar
+ * $username = überprüfung($_POST['username']);
 $password = überprüfung($_POST['password']);
 
 if(empty($username)){
@@ -21,7 +22,7 @@ else if (empty($password)){
     header("Location: 1.1.php?error=Password is required!");
     exit (); 
 }
-
+*/
 $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 
 $result = mysqli_query($con, $sql);

@@ -6,7 +6,7 @@
 </head>
 <body> 
 	<form action = "login.php" method = "post">
-		<h2> Please input your username and password </h2>
+		<h3> Please input your username and password </h3>
 		<?php if (isset($_POST['error'])){?>
 		<p class =" error"> <?php echo $_POST['error'];?> </p>
 		<?php }?>
