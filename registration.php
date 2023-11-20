@@ -10,7 +10,7 @@
     	<input type="text" name="username" size = "20" maxlength="25"/>
     	<br> 
     	<br>
-    	<label for="password">Password:</label> 
+    	<label>Password:</label> 
     	<input type="text" name="password" size="20" maxlength ="25"/>	<br>
     	<br>
     	<button type="submit"> Register!</button>
