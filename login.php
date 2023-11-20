@@ -1,35 +1,30 @@
 <?php
 session_start();
-include "datab.php";
+//DATENBANK-Anbindung
+$servername = "localhost";
+$userName = "root";
+$password = "";
+
+$databname = "PushingFilm";
+
+$con = mysqli_connect($servername, $userName, $password, $databname);
+if(!$con){
+    echo "The connection could not be established!";
+}
 
 if(isset($_POST['username'])&& isset($_POST['password'])){
     function überprüfung ($data){
-        $data = trim($data); 
-        $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data; 
     }
 }
-/* es scheint, als wäre dies nur Code für die URL bar
- * $username = überprüfung($_POST['username']);
-$password = überprüfung($_POST['password']);
-
-if(empty($username)){
-    header("Location: 1.1.php?error=Username is required!");
-    exit ();
-}
-else if (empty($password)){
-    header("Location: 1.1.php?error=Password is required!");
-    exit (); 
-}
-*/
-$sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+$sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "' AND password = '". $_POST['password'] . "'";
 
 $result = mysqli_query($con, $sql);
 
 if(mysqli_num_rows($result)===1){
     $row = mysqli_fetch_assoc($result);
-    if($row['username']=== $username && $row['password'] === $password){
+    if($row['username']=== $_POST['username'] && $row['password'] === $_POST['password']){
         echo "Logged Into PushingFilm!";
         $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
@@ -45,3 +40,5 @@ if(mysqli_num_rows($result)===1){
         header("Location: 1.1.php");
     
 }
+?>
+

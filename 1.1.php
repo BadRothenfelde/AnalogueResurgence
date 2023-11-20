@@ -7,9 +7,6 @@
 <body> 
 	<form action = "login.php" method = "post">
 		<h3> Please input your username and password </h3>
-		<?php if (isset($_POST['error'])){?>
-		<p class =" error"> <?php echo $_POST['error'];?> </p>
-		<?php }?>
 		<label> Username: </label>
 		<input type="text" name="username" size = "20" maxlength = "25"/>
 		<br>
