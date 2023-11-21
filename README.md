@@ -1,4 +1,4 @@
-#The AnalogueResurgence project
+The AnalogueResurgence project
 
 A webshop powered by PHP 
 
