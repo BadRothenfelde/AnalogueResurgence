@@ -28,7 +28,10 @@ mysqli_close($con);
     	<input type="text" name="password" size="20" maxlength ="25"/>	
     	<br>
     	<br>
-    	<button type="submit"> Register!</button>
+    	<button type="submit" name="register"> Register!</button>
+    <?php if(isset($_POST['register'])){
+   	    header("Location: 1.1.php");
+   	    exit(); }?>
 	</form>
 </body>
 </html>
