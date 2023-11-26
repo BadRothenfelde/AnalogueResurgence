@@ -2,7 +2,7 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
+//Inserting data into cart database
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 if(isset($_POST['product_id'])&& isset($_POST['pname'])&& isset($_POST['pcount'])){
@@ -22,6 +22,28 @@ if(isset($_POST["increase"]) && isset($_POST["increase-btn"])) {
     $sql_incr = "UPDATE cart SET pcount = pcount + 1 WHERE product_id = '$product_id' ";
     mysqli_query($con, $sql_incr);
 }
+
+//Order Placement
+if(isset($_POST["order"])){
+    $sql_order = "SELECT * FROM cart"; 
+    ?> 
+    <br>
+    <label><b style="color:green;">Success!! Thanks for choosing PushingFilm! Happy Shooting!</b> </label><?php  
+    $resultorder = mysqli_query($con, $sql_order);
+    //Order confirmation in table
+    echo "<h3>Your Order:</h3>";
+    echo "<table border='1'>";
+    echo '<tr> <td><b style="color:green;"> Product ID </b></td> <td><b style="color:green;"> Product Name </b></td> <td><b style="color:green;"> Quantity</b></td></tr>';
+    while ($dset = mysqli_fetch_assoc($resultorder)){
+        echo "<tr>";
+        echo '<td><b style="color:green;">' . $dset["product_id"] . '</b></td>';
+        echo '<td><b style="color:green;">' . $dset["pname"] . '</b></td>';
+        echo '<td><b style="color:green;">' . $dset["pcount"] . '</b></td>';
+        echo "</tr>";
+    }
+    echo "</table>";
+    
+ }
 ?>
 
 <!DOCTYPE html>
@@ -31,23 +53,23 @@ if(isset($_POST["increase"]) && isset($_POST["increase-btn"])) {
 </head>
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method= "post">
-	<h1> Select your product:</h1>
-	<label> <i>ID</i> of Product: </label>
-	<input type="text" name = "product_id" size ="20" maxlength = "25" id = "product_id"/>
-	<br>
-	<br>
-	<label><i>Name</i> of Product:</label>
-	<input type="text" name = "pname" size ="20" maxlength = "25" id = "pname"/>
-	<br>
-	<br>
-	<label><i>Quantity</i> of Product:</label>
-	<input type="text" name = "pcount" size ="20" maxlength = "25" id = "pcount"/>
-	<br>
-	<br>
-	<button type="submit"> <b>Add to cart!</b> </button>
+    	<h1> Select your product:</h1>
+    	<label> <i>ID</i> of Product: </label>
+    	<input type="text" name = "product_id" size ="20" maxlength = "25" id = "product_id"/>
+    	<br>
+    	<br>
+    	<label><i>Name</i> of Product:</label>
+    	<input type="text" name = "pname" size ="20" maxlength = "25" id = "pname"/>
+    	<br>
+    	<br>
+    	<label><i>Quantity</i> of Product:</label>
+    	<input type="text" name = "pcount" size ="20" maxlength = "25" id = "pcount"/>
+    	<br>
+    	<br>
+    	<button type="submit"> <b>Add to cart!</b> </button>
+        <br>
+    	<br>
 	</form>
-    <br>
-	<br>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<label><b>Remove product?</b> Type in the corresponding <i>Product-ID</i>!</label>
 		<input type="text" name="selection" size="5" id="selection">
@@ -58,15 +80,21 @@ if(isset($_POST["increase"]) && isset($_POST["increase-btn"])) {
 	 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label><b>Decrease QTY?</b> Type in the corresponding <i>Product-ID</i>!</label>
         <input type="text" name="decrease" size="5" id="decrease">
-        <button type="submit" name="decrease-btn">Delete</button>
+        <button type="submit" name="decrease-btn">Decrease</button>
         <br>
         <br>
-        </form>
-      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+     </form>
+     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label><b>Increase QTY?</b> Type in the corresponding <i>Product-ID</i>!</label>
         <input type="text" name="increase" size="5" id="increase">
-        <button type="submit" name="increase-btn">Delete</button>
-     	</form>
+        <button type="submit" name="increase-btn">Increase</button>
+     </form>
+     <br>
+     <br>
+     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+		<label> Ready? <i>Place your order!</i></label>
+		<button type="submit" name="order"> <b><h3>ORDER NOW</h3></b></button>
+	</form>
 	<h2>Shopping cart: </h2>
 </body>
 </html>
