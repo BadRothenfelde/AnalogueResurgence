@@ -18,9 +18,12 @@ $con = mysqli_connect($servername, $userName, $password, $databname);
 	<br>
 	<br> 
 	</form>
+	<a href="cart1.php"><button>Go to your cart!</button></a>
 	<br>
 	<br>
 	<a href="rating1.php"><button>Go to Ratings Page!</button></a>
+	<br> 
+	<br>
 </body>
 </html>
 
@@ -33,12 +36,12 @@ $res = mysqli_query($con, "SELECT * FROM products WHERE category_id = $selectedC
 
 
     echo "<table border='1'>";
-    echo "<tr> <td>Category-ID</td> <td> Product ID </td> <td> Product Name </td>";
+    echo "<tr> <td>Category-ID</td> <td><b> Product ID </b></td> <td> Product Name </td>";
     echo "<td> Price </td> <td> Rating (x/10) </td> <td> User-Rating </td> </tr>"; 
     while ($dset = mysqli_fetch_assoc($res)){
         echo "<tr>";
         echo "<td>" . $dset["category_id"]. "</td>";
-        echo "<td>" . $dset["product_id"] . "</td>";
+        echo "<td><b>" . $dset["product_id"] . "</b></td>";
         echo "<td>" . $dset["pname"] . "</td>";
         echo "<td>" . $dset["pprice"] ."</td>";
         echo "<td>" . $dset["prating"] . "</td>";

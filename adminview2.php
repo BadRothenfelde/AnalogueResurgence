@@ -18,7 +18,7 @@ if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) &
 </head>
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method= "post">
-	<h1>Welcome to PushingFilm - Admin View!</h1>
+	<h1>Admin View - Manage your products</h1>
 	<label> Name of product: </label>
 	<input type="text" name = "pname" size ="20" maxlength = "25" id = "pname"/>
 	<br>

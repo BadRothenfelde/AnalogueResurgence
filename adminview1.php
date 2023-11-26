@@ -19,7 +19,7 @@ if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
 </head>
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method= "post">
-	<h1>Welcome to PushingFilm - Admin View!</h1>
+	<h1>Admin View - Manage your categories</h1>
 	<label> <i>ID</i> of category: </label>
 	<input type="text" name = "cid" size ="20" maxlength = "25" id = "cid"/>
 	<br>
@@ -38,7 +38,7 @@ if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
 	<br>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<label><b>Delete?</b> Type in the <i>Category-ID</i>!</label>
-		<input type="text" name="selection" size="20" id="selection">
+		<input type="text" name="selection" size="5" id="selection">
 		<button type="submit" name="delete_product">Delete</button>
 		<br>
 		<br>
