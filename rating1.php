@@ -14,7 +14,7 @@ $con = mysqli_connect($servername, $userName, $password, $databname);
 </head>
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method= "post">
-	<h1>PushingFilm - Specific Rating</h1>
+	<h1>PushingFilm - View Rating</h1>
 	<br>
 	<br> 
 	<input type="text" name="selectProduct" size="3" id="selectProduct">
