@@ -31,7 +31,10 @@ mysqli_close($con);
     	<button type="submit" name="register"> Register!</button>
     <?php if(isset($_POST['register'])){
    	    header("Location: 1.1.php");
-   	    exit(); }?>
+   	    exit(); }
+   	    
+   	    if(isset($_GET['error']) && $_GET['error']==1) echo "Unknown user - please register!";?>
 	</form>
+	
 </body>
 </html>

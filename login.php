@@ -27,6 +27,10 @@ if(mysqli_num_rows($result)===1){
         $_SESSION['name'] = $row['name'];
         $_SESSION['id'] = $row['id'];
         header("Location: homepage.php");
+        exit;
     }
+    
 }
+header("Location: registrationconn.php?error=1");
+
 ?>

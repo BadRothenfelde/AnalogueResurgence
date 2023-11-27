@@ -6,8 +6,12 @@ $password = "";
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 if(isset($_POST['product_id'])&& isset($_POST['pname'])&& isset($_POST['pcount'])){
-    $sql = "INSERT INTO cart (product_id, pname, pcount) VALUES ('" . $_POST["product_id"] . "', '" . $_POST["pname"] . "', '" . $_POST["pcount"] . "')";
-    mysqli_query($con, $sql);
+    $query = mysqli_query($con, "SELECT product_id, pname FROM products where product_id='" . $_POST['product_id'] . "' and pname='". $_POST['pname'] . "'");
+    $row = mysqli_num_rows($query);
+    if($row==1){
+        $sql = "INSERT INTO cart (product_id, pname, pcount) VALUES ('" . $_POST["product_id"] . "', '" . $_POST["pname"] . "', '" . $_POST["pcount"] . "')";
+        mysqli_query($con, $sql);
+    }
 }
 
 //QTY -1
