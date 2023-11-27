@@ -1,8 +1,8 @@
+<!--  Login form -->
 <!DOCTYPE html>
 <html> 
 <head> 
 	<title> Log into PushingFilm </title>
-
 </head>
 <body> 
 	<form action = "login.php" method = "post">

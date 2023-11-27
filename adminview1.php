@@ -2,16 +2,11 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 
-if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
-    $sql = "INSERT INTO categories (cid, filmcat) VALUES ('" . $_POST["cid"] . "', '" . $_POST["filmcat"] . "')";
-    mysqli_query($con, $sql); 
-}
 ?>
-
+<!-- Forms for adding & deleting categories and jumping to products page -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,20 +14,20 @@ if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
 </head>
 <body>
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method= "post">
-	<h1>Admin View - Manage your categories</h1>
-	<label> <i>ID</i> of category: </label>
-	<input type="text" name = "cid" size ="20" maxlength = "25" id = "cid"/>
-	<br>
-	<br>
-	<label> <i>Name</i> of film category: </label>
-	<input type="text" name = "filmcat" size ="20" maxlength = "25" id = "filmcat"/>
-	<br>
-	<br>
-	<button type="submit"> <b>Submit for Admin-Review!</b> </button>
+    	<h1>Admin View - Manage your categories</h1>
+    	<label> <i>ID</i> of category: </label>
+    	<input type="text" name = "cid" size ="20" maxlength = "25" id = "cid"/>
+    	<br>
+    	<br>
+    	<label> <i>Name</i> of film category: </label>
+    	<input type="text" name = "filmcat" size ="20" maxlength = "25" id = "filmcat"/>
+    	<br>
+    	<br>
+    	<button type="submit"> <b>Submit for Admin-Review!</b> </button>
 	</form>
 	<br>
 	<form action="adminview2.php" method="get">
-	<button type="submit">Go to <i>Admin-View (Products)</i> </button>
+		<button type="submit">Go to <i>Admin-View (Products)</i> </button>
     </form>
     <br>
 	<br>
@@ -48,7 +43,12 @@ if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
 </html>
 
 <?php
-//Löschen von ausgewähltem Datensatz
+//Inserting Category ID & Name into categories table
+if(isset($_POST['cid'])&& isset($_POST['filmcat'])){
+    $sql = "INSERT INTO categories (cid, filmcat) VALUES ('" . $_POST["cid"] . "', '" . $_POST["filmcat"] . "')";
+    mysqli_query($con, $sql);
+}
+//Deleting selected dataset
 if (isset($_POST["selection"])) {
         $sql = "DELETE FROM categories WHERE cid = '" . $_POST["selection"] . "'";
         mysqli_query($con, $sql);
@@ -60,7 +60,7 @@ if (isset($_POST["selection"])) {
     }
 
 
-//Ausgabe der DB in Tabelle
+//Output of category table in a table 
 $res = mysqli_query($con, "SELECT * FROM categories");
 
     echo "<table border='1'>";

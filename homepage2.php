@@ -2,11 +2,11 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
-?>
 
+?>
+<!-- Displaying the products that belong to the previously selected category, forward to cart and forward to ratings -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@ $con = mysqli_connect($servername, $userName, $password, $databname);
 </html>
 
 <?php 
-//Ausgabe der DB in Tabelle
+//Output the selected categories' products 
 $selectedCategoryId = $_POST["selection"];
 $res = mysqli_query($con, "SELECT * FROM products");
 $res = mysqli_query($con, "SELECT * FROM products WHERE category_id = $selectedCategoryId");

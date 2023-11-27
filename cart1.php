@@ -2,7 +2,8 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-//Inserting data into cart database
+
+//Inserting data into cart table and displaying existing cart 
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 if(isset($_POST['product_id'])&& isset($_POST['pname'])&& isset($_POST['pcount'])){
@@ -27,14 +28,15 @@ if(isset($_POST["increase"]) && isset($_POST["increase-btn"])) {
     mysqli_query($con, $sql_incr);
 }
 
-//Order Placement
+//Placing an order
 if(isset($_POST["order"])){
     $sql_order = "SELECT * FROM cart"; 
     ?> 
     <br>
     <label><b style="color:green;">Success!! Thanks for choosing PushingFilm! Happy Shooting!</b> </label><?php  
     $resultorder = mysqli_query($con, $sql_order);
-    //Order confirmation in table
+    
+    //Highlighted order confirmation in a table with 
     echo "<h3>Your Order:</h3>";
     echo "<table border='1'>";
     echo '<tr> <td><b style="color:green;"> Product ID </b></td> <td><b style="color:green;"> Product Name </b></td> <td><b style="color:green;"> Quantity</b></td></tr>';
@@ -49,6 +51,9 @@ if(isset($_POST["order"])){
     
  }
 ?>
+<!-- Form for ID, Name and Quantity of product as well as removing, decreasing and increasing QTY of 
+it via Product-ID -->
+
 
 <!DOCTYPE html>
 <html>
@@ -104,7 +109,7 @@ if(isset($_POST["order"])){
 </html>
 
 <?php
-//Löschen von ausgewähltem Datensatz
+//Deleting a selected product from the cart table
 if (isset($_POST["selection"])) {
         $sql = "DELETE FROM cart WHERE product_id = '" . $_POST["selection"] . "'";
         mysqli_query($con, $sql);
@@ -116,7 +121,7 @@ if (isset($_POST["selection"])) {
     }
 
 
-//Ausgabe der DB in Tabelle
+//Output of current cart in a table
     $res = mysqli_query($con, "SELECT * FROM cart");
     
     echo "<table border='1'>";

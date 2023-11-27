@@ -2,12 +2,10 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 
-?>
-<?php
+//if signed in as admin redirect to Admin-view
 session_start();
 if(isset($_SESSION['id'])&& isset($_SESSION['username'])){
     if ($_SESSION['username'] == 'Administrator') {
@@ -16,6 +14,7 @@ if(isset($_SESSION['id'])&& isset($_SESSION['username'])){
     }
     
 ?>
+<!-- Form for user to start navigating through the categories -->
 <!DOCTYPE HTML> 
 <html> 
 <head>
@@ -36,7 +35,7 @@ if(isset($_SESSION['id'])&& isset($_SESSION['username'])){
 </body>
 </html>
 
-<?php //Ausgabe der DB in Tabelle
+<?php //Displaying the differenct categories 
 $res = mysqli_query($con, "SELECT * FROM categories");
 
     echo "<table border='1'>";

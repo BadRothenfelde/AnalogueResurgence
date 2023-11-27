@@ -2,13 +2,13 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 
 session_start();
 ?>
 
+<!-- Form to input product-id and then giving own rating -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@ session_start();
 		</form>
 
 	<?php 
-	// Ausgabe des spez. Produkts in Tabelle
+	// Output of table via selected Product-ID
 	if (isset($_POST["selectProductId"])) {
 	    $selectProductId = $_POST["selectProductId"];
 	    $res = mysqli_query($con, "SELECT * FROM products WHERE product_id = $selectProductId");
@@ -52,17 +52,15 @@ session_start();
 	    }
 	}
 	
-	// Ausgabe des Ratings für spezifisches Produkt
+	// Output of rating for the selected product
 	if (isset($_POST["prating2"])) {
 	    $submitRating = $_POST["prating2"];
-	    $selectProductId = $_POST["selectProductId"];
 	    $res1 = mysqli_query($con, "UPDATE `products` SET `prating2` = '$submitRating' WHERE `products`.`product_id` = '$selectProductId';");
 	    if ($res1) {
 	        echo "<table border='1'>";
-	        echo "<tr>  <td> Product ID </td> <td> Product Name </td>";
+	        echo "<tr> <td> Product Name </td>";
 	        echo "<td> Rating (x/10) </td><td> User-Rating</td> </tr>";
 	        echo "<tr>";
-	        echo "<td>" . $selectProductId . "</td>";
 	        echo "<td>" . $_SESSION["pname"] . "</td>";
 	        echo '<td><b style="color:green;">' . $_SESSION["prating"] . '</b></td>';
 	        echo '<td><b style="color:green;">' . $submitRating . '</b></td>';

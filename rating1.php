@@ -2,11 +2,10 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
 ?>
-
+<!-- Form to view a rating via input of Product-ID -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +25,7 @@ $con = mysqli_connect($servername, $userName, $password, $databname);
 </html>
 
   <?php 
-    // Ausgabe der DB in Tabelle
+    // Output of specific product and highlighting the rating
     if (isset($_POST["selectProduct"])) {
         $selectProduct = $_POST["selectProduct"];
         $res = mysqli_query($con, "SELECT * FROM products WHERE product_id = $selectProduct");

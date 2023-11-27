@@ -2,15 +2,11 @@
 $servername = "localhost";
 $userName = "root";
 $password = "";
-
 $databname = "PushingFilm";
 $con = mysqli_connect($servername, $userName, $password, $databname);
-if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) && isset($_POST['category_id'])){
-    $sql = "INSERT INTO products (pname, pprice, prating, category_id) VALUES ('" . $_POST["pname"] . "', '" . $_POST["pprice"] . "', '" . $_POST["prating"] . "', '" . $_POST["category_id"] . "')";
-    mysqli_query($con, $sql); 
-}
-?>
 
+?>
+<!-- Form for adding name, price, rating of product.  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +27,7 @@ if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) &
 	<input type="text" name = "prating" size = "20" maxlength ="25" id = "prating"/>
 	<br>
 	<br>
+	<!-- select list to assign the new product to a specific category -->
 	<label> Select category:</label>
 	<select name="category_id">
 	<?php $categories = mysqli_query($con, "SELECT * FROM categories"); 
@@ -44,7 +41,7 @@ if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) &
 	<br>
 	<br> 
 	</form>
-	
+	<!-- Form for deletion of a specific product -->
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<label><b>Delete?</b> Type in the <i>Product-ID</i>!</label>
 		<input type="text" name="selection" size="20" id="selection">
@@ -57,7 +54,12 @@ if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) &
 </html>
 
 <?php
-//Löschen von ausgewähltem Datensatz
+//Insertion of form from above into the products table
+if(isset($_POST['pname'])&& isset($_POST['prating'])&& isset($_POST['pprice']) && isset($_POST['category_id'])){
+    $sql = "INSERT INTO products (pname, pprice, prating, category_id) VALUES ('" . $_POST["pname"] . "', '" . $_POST["pprice"] . "', '" . $_POST["prating"] . "', '" . $_POST["category_id"] . "')";
+    mysqli_query($con, $sql);
+}
+//Deleting selected dataset
 if (isset($_POST["selection"])) {
         $sql = "DELETE FROM products WHERE product_id = '" . $_POST["selection"] . "'";
         mysqli_query($con, $sql);
@@ -69,7 +71,7 @@ if (isset($_POST["selection"])) {
     }
 
 
-//Ausgabe der DB in Tabelle
+//Output of products table in a table
 $res = mysqli_query($con, "SELECT * FROM products");
 
     echo "<table border='1'>";
